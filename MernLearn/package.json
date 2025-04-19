@@ -1,0 +1,21 @@
+{
+  "name": "mernlearn",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Peaxmoon",
+  "license": "ISC",
+  "description": "ecmommerce rest api",
+  "dependencies": {
+    "color": "^5.0.0",
+    "colors": "^1.4.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9"
+  }
+}
