@@ -1,11 +1,11 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import About from './pages/About'
+import About from './common/About'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
-import Features from './pages/Features'
+import Features from './common/Features'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route path="/hero" element={<Hero />} />
           <Route path="/features" element={<Features />} />
           <Route path="/footer" element={<Footer />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
           
           {/* <Route path="/contact" element={<Contact />} /> */}

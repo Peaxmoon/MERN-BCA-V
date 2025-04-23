@@ -2,18 +2,20 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { Features } from 'tailwindcss'
 import Hero from '../components/Hero'
+import Login from '../auth/Login'
+import Features from '../common/Features'
+import About from '../common/About'
+import Category from './Category'
 
 function Home() {
   return (
     <div>
-      <Navbar />
-      <Hero />
-      {/* <Navbar /> */}
-      {/* <Outlet /> */}
-      {/* <Features /> */}
-      <Footer />
+      <h1>This is home page</h1>
+      <h3>Search feature in Navbar</h3>
+      <Category />
+      <Features />
+      <About />
     </div>
   )
 }
