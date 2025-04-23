@@ -7,18 +7,18 @@ const routes = [
         path: "/products",
         name: "Products"
     },
-    {
-        path: "/product/:id",
-        name: "ProductDetails"
-    },
+    // {
+    //     path: "/product/:id",
+    //     name: "ProductDetails"
+    // },
     {
         path: "/cart",
         name: "Cart"
     },
-    {
-        path: "/checkout",
-        name: "Checkout"
-    },
+    // {
+    //     path: "/checkout",
+    //     name: "Checkout"
+    // },
     {
         path: "/category/:type",
         name: "Category"

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
-// import ProductCard from "../components/ProductCard";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -9,11 +8,9 @@ export default function Products() {
     fetch("https://dummyjson.com/products")
       .then(res => res.json())
       .then(data => {
-        // const electronics = data.products.filter(p => 
-        //   p.category === 'smartphones' || p.category === 'laptops'
-        // );
-        setProducts(data.products);
-      {console.log(products)}
+        const products = data.products
+        setProducts(products);
+      // {console.log(products)}
 
       });
   }, []);
@@ -40,7 +37,7 @@ export default function Products() {
       {products.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}
-      ghgh
+    
     </div>
   );
 }
