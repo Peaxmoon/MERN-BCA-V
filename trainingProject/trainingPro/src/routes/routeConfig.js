@@ -19,10 +19,10 @@ const routes = [
     //     path: "/checkout",
     //     name: "Checkout"
     // },
-    {
-        path: "/category/:type",
-        name: "Category"
-    },
+    // {
+    //     path: "/category/:type",
+    //     name: "Category"
+    // },
     {
         path: "/login",
         name: "Login"

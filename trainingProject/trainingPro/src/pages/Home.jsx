@@ -7,13 +7,14 @@ import Login from '../auth/Login'
 import Features from '../common/Features'
 import About from '../common/About'
 import Category from './Category'
+import CategoryLinks from '../components/CategoryLinks'
 
 function Home() {
   return (
     <div>
       <h1>This is home page</h1>
       <h3>Search feature in Navbar</h3>
-      <Category />
+      <CategoryLinks />
       <Features />
       <About />
     </div>
