@@ -1,8 +1,23 @@
 // src/pages/Login.jsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import LoginForm from '../components/LoginForm'; // Ensure correct import
 
 const Login = () => {
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (credentials) => {
+    const result = await login(credentials.username, credentials.password);
+    if (result.success) {
+      navigate('/');
+    } else {
+      setError(result.error);
+    }
+  };
+
   // Effect for animated background
   useEffect(() => {
     // Create animated gradient effect
@@ -64,34 +79,34 @@ const Login = () => {
   }, []);
   
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-purple-500'>
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-blue-900 ">
-      {/* Animated gradient background */}
-      <div 
-        id="gradient-container"
-        className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 z-0 overflow-hidden"
-      ></div>
-      
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-blue-900 bg-opacity-50 z-10"></div>
-      
-      {/* Login form with glass effect */}
-      <div className="relative z-20 backdrop-blur-md bg-white bg-opacity-10 p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
-        <LoginForm />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500">
+      <div className="relative overflow-hidden flex items-center justify-center p-4">
+        {/* Animated gradient background */}
+        <div 
+          id="gradient-container"
+          className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 z-0 overflow-hidden"
+        ></div>
+        
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-blue-900 bg-opacity-50 z-10"></div>
+        
+        {/* Login form with glass effect */}
+        <div className="relative z-20 backdrop-blur-md bg-white bg-opacity-10 p-6 rounded-lg shadow-lg">
+          <LoginForm onSubmit={handleLogin} error={error} />
+        </div>
+        
+        {/* Decorative electronics icons floating in background */}
+        <div className="absolute bottom-6 left-6 text-white opacity-20 z-10">
+          <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <div className="absolute top-10 right-10 text-white opacity-10 z-10">
+          <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
       </div>
-      
-      {/* Decorative electronics icons floating in background */}
-      <div className="absolute bottom-6 left-6 text-white opacity-20 z-10">
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-        </svg>
-      </div>
-      <div className="absolute top-10 right-10 text-white opacity-10 z-10">
-        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-        </svg>
-      </div>
-    </div>
     </div>
   );
 };

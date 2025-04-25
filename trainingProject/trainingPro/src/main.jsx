@@ -12,6 +12,9 @@ import Login from './auth/Login.jsx'
 import Cart from './pages/cart/Cart.jsx'
 import Register from './auth/Register.jsx'
 import NotFound from './pages/NotFound.jsx'
+import CategoryPage from './pages/CategoryPage.jsx'
+import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +26,7 @@ const router = createBrowserRouter([
       { path: "product/:id", element: <ProductDetails /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
-      { path: "category/:type", element: <Category /> },
+      { path: "category/:categoryName", element: <CategoryPage /> },
       {path: "login", element: <Login />},
       {path: "register", element: <Register />},
       {path: "*", element: <NotFound />},
@@ -33,7 +36,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </AuthProvider>
   </StrictMode>,
 )

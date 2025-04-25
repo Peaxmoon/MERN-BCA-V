@@ -1,28 +1,62 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../auth/loginComp/InputField';
 import PasswordField from '../auth/loginComp/PasswordField';
 import CheckboxField from '../auth/loginComp/CheckboxField';
 import Button from './Button';
 import SocialButton from '../auth/loginComp/SocialButton';
 import Divider from '../auth/loginComp/Divider';
-// import Button from '../common/Button/Button';
-// import InputField from '../common/Input/InputField';
-// import SocialButton from '../common/Button/SocialButton';
-// import PasswordField from '../common/Input/PasswordField';
-// import CheckboxField from '../common/Input/CheckboxField';
-// import Divider from '../common/Divider/Divider';
+import { useAuth } from '../context/AuthContext';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Update default credentials to match DummyJSON user
+  const defaultCredentials = {
+    username: 'elijahs',
+    password: 'elijahspass'
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    console.log('Login attempt:', { email, password, rememberMe });
-    // Example: dispatch(loginUser({ email, password, rememberMe }));
+    setLoading(true);
+    setError('');
+
+    try {
+      // Use the username directly without email transformation
+      const loginResult = await login(defaultCredentials.username, defaultCredentials.password);
+      
+      console.log('Login response:', loginResult); // Debug login response
+
+      if (loginResult.success) {
+        // Show success message before redirecting
+        setError('');
+        setLoading(true);
+        
+        // Store credentials if remember me is checked
+        if (rememberMe) {
+          localStorage.setItem('rememberedUser', defaultCredentials.username);
+        }
+
+        // Navigate after a brief delay to show loading state
+        setTimeout(() => {
+          navigate('/');
+        }, 800);
+      } else {
+        setError(loginResult.error || 'Invalid credentials. Please try again.');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,7 +72,20 @@ const LoginForm = () => {
       
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h2>
       
+      {/* Add default credentials helper text */}
+      <div className="mb-4 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+        <p className="font-medium">Demo Credentials:</p>
+        <p>Username: {defaultCredentials.username}</p>
+        <p>Password: {defaultCredentials.password}</p>
+      </div>
+
       <form className="space-y-6" onSubmit={handleSubmit}>
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg">
+            {error}
+          </div>
+        )}
+
         <InputField
           type="email"
           id="email"
@@ -46,6 +93,7 @@ const LoginForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={loading}
         />
         
         <PasswordField
@@ -54,6 +102,7 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={loading}
         />
         
         <div className="flex items-center justify-between">
@@ -62,6 +111,7 @@ const LoginForm = () => {
             label="Remember me"
             checked={rememberMe}
             onChange={() => setRememberMe(!rememberMe)}
+            disabled={loading}
           />
           <div className="text-sm">
             <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">
@@ -70,16 +120,20 @@ const LoginForm = () => {
           </div>
         </div>
         
-        <Button type="submit" fullWidth>
-          Sign in
+        <Button 
+          type="submit" 
+          fullWidth 
+          disabled={loading}
+        >
+          {loading ? 'Signing in...' : 'Sign in'}
         </Button>
         
         <Divider text="Or continue with" />
         
         <div className="grid grid-cols-3 gap-3">
-          <SocialButton provider="google" />
-          <SocialButton provider="apple" />
-          <SocialButton provider="facebook" />
+          <SocialButton provider="google" disabled={loading} />
+          <SocialButton provider="apple" disabled={loading} />
+          <SocialButton provider="facebook" disabled={loading} />
         </div>
       </form>
       

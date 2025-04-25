@@ -23,14 +23,14 @@ const routes = [
     //     path: "/category/:type",
     //     name: "Category"
     // },
-    {
-        path: "/login",
-        name: "Login"
-    },
-    {
-        path: "/register",
-        name: "Register"
-    },
+    // {
+    //     path: "/login",
+    //     name: "Login"
+    // },
+    // {
+    //     path: "/register",
+    //     name: "Register"
+    // },
     
 ]
 

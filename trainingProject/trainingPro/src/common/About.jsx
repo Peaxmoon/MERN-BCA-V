@@ -36,10 +36,10 @@ const About = () => {
   }, []);
 
   const timelineEvents = [
-    { year: "2018", description: "Founded in Kathmandu with a focus on smartphones and accessories" },
-    { year: "2020", description: "Expanded product range to include laptops and computer peripherals" },
-    { year: "2022", description: "Opened our flagship experience center in Durbar Marg" },
-    { year: "2024", description: "Serving 50,000+ customers with nationwide delivery" }
+    { year: "April 1", description: "Learned about React and how to use react." },
+    { year: "April 10", description: "Learned about Routing and data fetching form api." },
+    { year: "April 15", description: "Learned Full React for front end." },
+    { year: "April 25", description: "The final training project." }
   ];
 
   return (
@@ -65,13 +65,13 @@ const About = () => {
           <div className="flex flex-col md:flex-row gap-10 items-center">
             <div className="md:w-1/2">
               <p className="mb-4">
-                In 2018, our founder noticed a gap in Nepal's electronics market. While demand for quality electronics was growing, the shopping experience was often frustrating.
-              </p>
+                In April 1, we started learning about reactjs and its UseCase in building website.
+                </p>
               <p className="mb-4">
-                ElectroMart was born from a simple idea: create an online electronics store that treats customers the way we'd want to be treated — with transparency, quality products, and exceptional service.
+                ElectroMart is a ecommerce platform made as trainig final project.
               </p>
               <p>
-                Starting with just 50 products and a small warehouse in Kathmandu, we've since grown to offer thousands of premium electronics while maintaining our commitment to customer satisfaction.
+                THe products are fetched from api dummyjson.com and all the products have dynamic value according to api.
               </p>
             </div>
             <div className="md:w-1/2">
