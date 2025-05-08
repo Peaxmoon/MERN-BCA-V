@@ -10,7 +10,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <App /> */}
     {/* <AppCon /> */}
-    {/* <AppTodo /> */}
-    <Apptodo />
+     <AppTodo /> 
+    {/*<Apptodo />*/}
+  
   </StrictMode>,
 )
