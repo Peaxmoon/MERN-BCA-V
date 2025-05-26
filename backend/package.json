@@ -1,7 +1,7 @@
 {
-  "name": "chai-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "a backend at chai aur code channel - youtube",
+  "description": "Learning backend development with Node.js and Express",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
@@ -9,18 +9,24 @@
   },
   "keywords": [
     "javascript",
-    "backend",
-    "chai"
+    "backend"
   ],
-  "author": "Hitesh Choudhary",
+  "author": "Sujjal Khadka",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.6.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "mongoose-aggregate-paginate-v2": "^1.1.4",
+    "multer": "^2.0.0"
   }
 }
