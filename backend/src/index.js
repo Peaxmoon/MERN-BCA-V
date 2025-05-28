@@ -9,8 +9,8 @@ dotenv.config({
 
 connectDB()
 .then(() => {
-    app.listen(process.env.PORT || 8000, () => {
-        console.log(`Listening on PORT: ${process.env.PORT || 8000}`);
+    app.listen(process.env.PORT, () => {
+        console.log(`Listening on PORT: ${process.env.PORT}`);
     })
     console.log("MONGODB db connection successful !!!");
 })
